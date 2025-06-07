@@ -1,0 +1,998 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>了凡四训原文与译文</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f8f5f2',
+                            100: '#e8e0d9',
+                            200: '#d8ccc0',
+                            300: '#c8b8a7',
+                            400: '#b8a48e',
+                            500: '#a89075',
+                            600: '#987c5c',
+                            700: '#886843',
+                            800: '#78542a',
+                            900: '#684011',
+                        },
+                        secondary: {
+                            50: '#f2f8f5',
+                            100: '#d9e8e0',
+                            200: '#c0d8cc',
+                            300: '#a7c8b8',
+                            400: '#8eb8a4',
+                            500: '#75a890',
+                            600: '#5c987c',
+                            700: '#438868',
+                            800: '#2a7854',
+                            900: '#116840',
+                        },
+                    },
+                    fontFamily: {
+                        'song': ['"Noto Serif SC"', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&display=swap');
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        .bg-pattern {
+            background-color: #f8f5f2;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d8ccc0' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        /* 竖排古文样式 */
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            line-height: 1.7;
+        }
+        
+        /* 原文段落样式 */
+        .original-text {
+            font-size: 1.1rem;
+            line-height: 2;
+            letter-spacing: 1px;
+        }
+        
+        /* 译文段落样式 */
+        .translation-text {
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        
+        /* 目录项激活状态 */
+        .toc-item.active {
+            color: #987c5c;
+            font-weight: 600;
+            border-left: 3px solid #987c5c;
+        }
+        
+        /* 段落高亮效果 */
+        .paragraph-pair:hover {
+            background-color: rgba(152, 124, 92, 0.05);
+        }
+    </style>
+</head>
+<body class="font-song bg-pattern min-h-screen flex flex-col">
+    <!-- 导航栏 -->
+    <nav class="bg-primary-700 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    <span class="text-xl font-bold">了凡四训原文与译文</span>
+                </div>
+                
+                <!-- 桌面导航 -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="#introduction" class="hover:text-primary-200 transition">简介</a>
+                    <a href="#section1" class="hover:text-primary-200 transition">立命之学</a>
+                    <a href="#section2" class="hover:text-primary-200 transition">改过之法</a>
+                    <a href="#section3" class="hover:text-primary-200 transition">积善之方</a>
+                    <a href="#section4" class="hover:text-primary-200 transition">谦德之效</a>
+                    <a href="/" class="hover:text-primary-200 transition">返回首页</a>
+                </div>
+                
+                <!-- 移动导航按钮 -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 移动导航菜单 -->
+            <div id="mobile-menu" class="md:hidden hidden mt-3 pb-2">
+                <a href="#introduction" class="block py-2 hover:text-primary-200 transition">简介</a>
+                <a href="#section1" class="block py-2 hover:text-primary-200 transition">立命之学</a>
+                <a href="#section2" class="block py-2 hover:text-primary-200 transition">改过之法</a>
+                <a href="#section3" class="block py-2 hover:text-primary-200 transition">积善之方</a>
+                <a href="#section4" class="block py-2 hover:text-primary-200 transition">谦德之效</a>
+                <a href="/" class="block py-2 hover:text-primary-200 transition">返回首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <div class="flex flex-col md:flex-row container mx-auto px-4 py-8">
+        <!-- 侧边栏目录 - 桌面版 -->
+        <aside class="hidden md:block w-64 sticky top-24 self-start h-[calc(100vh-100px)] overflow-y-auto pr-4">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-lg font-bold text-primary-800 border-b border-primary-200 pb-2 mb-4">目录</h2>
+                <ul class="space-y-1" id="toc">
+                    <li><a href="#introduction" class="toc-item block px-3 py-2 hover:bg-primary-50 transition">前言与简介</a></li>
+                    <li>
+                        <a href="#section1" class="toc-item block px-3 py-2 hover:bg-primary-50 transition">第一章：立命之学</a>
+                        <ul class="ml-4 mt-1 space-y-1 text-sm">
+                            <li><a href="#section1-1" class="toc-item block px-3 py-1 hover:bg-primary-50 transition">袁了凡的命运预测</a></li>
+                            <li><a href="#section1-2" class="toc-item block px-3 py-1 hover:bg-primary-50 transition">遇见云谷禅师</a></li>
+                            <li><a href="#section1-3" class="toc-item block px-3 py-1 hover:bg-primary-50 transition">命由我作，福自己求</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#section2" class="toc-item block px-3 py-2 hover:bg-primary-50 transition">第二章：改过之法</a>
+                        <ul class="ml-4 mt-1 space-y-1 text-sm">
+                            <li><a href="#section2-1" class="toc-item block px-3 py-1 hover:bg-primary-50 transition">为何要改过</a></li>
+                            <li><a href="#section2-2" class="toc-item block px-3 py-1 hover:bg-primary-50 transition">如何改过</a></li>
+                            <li><a href="#section2-3" class="toc-item block px-3 py-1 hover:bg-primary-50 transition">改过的效验</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#section3" class="toc-item block px-3 py-2 hover:bg-primary-50 transition">第三章：积善之方</a>
+                        <ul class="ml-4 mt-1 space-y-1 text-sm">
+                            <li><a href="#section3-1" class="toc-item block px-3 py-1 hover:bg-primary-50 transition">善有真假</a></li>
+                            <li><a href="#section3-2" class="toc-item block px-3 py-1 hover:bg-primary-50 transition">十种行善方法</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#section4" class="toc-item block px-3 py-2 hover:bg-primary-50 transition">第四章：谦德之效</a>
+                        <ul class="ml-4 mt-1 space-y-1 text-sm">
+                            <li><a href="#section4-1" class="toc-item block px-3 py-1 hover:bg-primary-50 transition">天道与谦德</a></li>
+                            <li><a href="#section4-2" class="toc-item block px-3 py-1 hover:bg-primary-50 transition">谦德的表现</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <!-- 阅读设置 -->
+                <div class="mt-8 pt-4 border-t border-primary-200">
+                    <h3 class="text-md font-bold text-primary-800 mb-3">阅读设置</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="text-sm text-gray-700 block mb-1">字体大小</label>
+                            <div class="flex items-center">
+                                <button id="font-smaller" class="bg-primary-100 hover:bg-primary-200 px-3 py-1 rounded-l text-primary-800">A-</button>
+                                <button id="font-reset" class="bg-primary-100 hover:bg-primary-200 px-3 py-1 text-primary-800">重置</button>
+                                <button id="font-larger" class="bg-primary-100 hover:bg-primary-200 px-3 py-1 rounded-r text-primary-800">A+</button>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-sm text-gray-700 block mb-1">显示模式</label>
+                            <select id="display-mode" class="w-full bg-primary-50 border border-primary-200 rounded px-3 py-1 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                <option value="side-by-side">原文译文并排</option>
+                                <option value="original-first">原文在前</option>
+                                <option value="translation-first">译文在前</option>
+                                <option value="original-only">仅显示原文</option>
+                                <option value="translation-only">仅显示译文</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- 主要内容 -->
+        <main class="md:ml-8 w-full md:w-[calc(100%-16rem)]">
+            <!-- 简介部分 -->
+            <section id="introduction" class="mb-12">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-primary-700 text-white py-4 px-6">
+                        <h1 class="text-2xl md:text-3xl font-bold">了凡四训简介</h1>
+                    </div>
+                    <div class="p-6">
+                        <div class="prose max-w-none">
+                            <p class="mb-4">《了凡四训》是明代袁黄（字坤仪，号了凡）所著的家训类文章，成书于公元1602年。全书分为立命之学、改过之法、积善之方、谦德之效四个部分，阐述了改变命运的哲学思想与具体方法。</p>
+                            
+                            <p class="mb-4">袁黄早年遇算命先生精确预测其功名运势，因此消极认命。后遇云谷禅师点化，领悟"命由我作，福自己求"的道理，开始注重积德行善，自我修身。</p>
+                            
+                            <p class="mb-4">本书的核心思想是：人的命运并非完全由天注定，而是可以通过积累善行、改过迁善来改变的。这一思想融合了儒、释、道三家的智慧，对于人们建立正确的人生观和价值观具有重要启示。</p>
+                            
+                            <div class="flex justify-center my-6">
+                                <div class="w-24 border-t-2 border-primary-300"></div>
+                            </div>
+                            
+                            <h2 class="text-xl font-bold text-primary-800 mb-4">阅读提示</h2>
+                            <ul class="list-disc pl-5 space-y-2 mb-4">
+                                <li>本页面提供《了凡四训》原文与白话译文对照版本，方便读者阅读理解</li>
+                                <li>点击侧边栏目录可快速跳转到相应章节</li>
+                                <li>使用阅读设置功能可调整字体大小和显示模式</li>
+                                <li>建议初次阅读时，先浏览全文，再深入研读每个章节</li>
+                            </ul>
+                            
+                            <p class="italic text-gray-600">让我们一起探索袁了凡先生的智慧，思考如何改变命运，获得幸福。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 第一章：立命之学 -->
+            <section id="section1" class="mb-12">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-primary-700 text-white py-4 px-6">
+                        <h2 class="text-2xl font-bold">第一章：立命之学</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-lg font-medium text-primary-800 mb-6">
+                            <p>立命之学，讲述了如何创造命运，而非被命运束缚的道理。袁了凡以亲身经历为例，阐述了人可以通过改过积善来改变自己命运的观点。</p>
+                        </div>
+                        
+                        <!-- 原文与译文对照 - 第一部分 -->
+                        <div id="section1-1" class="mb-8">
+                            <h3 class="text-xl font-bold text-primary-800 mb-4 pb-2 border-b border-primary-200">袁了凡的命运预测</h3>
+                            
+                            <div class="paragraph-pair border-b border-dashed border-gray-200 pb-6 mb-6">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>余童年丧父，老母命弃举业学医，谓可以养生，可以济人，且习一艺以成名，尔父夙心也。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>我在童年的时候，父亲就去世了，母亲要我放弃读书参加科举考试的学业，而改学医术。她说："学习医术可以养活自己，使一家人将来的生活有所保障，也能够济世利人。而且学得一技之长，可以成就声名，这是你父亲生前一向就存在的心愿。"</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="paragraph-pair border-b border-dashed border-gray-200 pb-6 mb-6">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>后余在慈云寺，遇一老者，修髯伟貌，飘飘若仙，余敬礼之。语余曰："子仕路中人也！明年即进学，何不读书？"余告以故，并叩老者姓氏里居。曰："吾姓孔，云南人也！得邵子皇极数正传，数该传汝。"</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>后来我在慈云寺，遇到一位老人家，满面长须，身材魁梧，道貌岸然，酷若神仙，我很恭敬地向他行礼。这个老人家告诉我说："你有做官的命，应该是官场中的人，明年就可以考中秀才，进入学宫，为什么不读书呢？"我只好据实以告，并且请问老人姓名与府居。老人家说："我姓孔，是云南人。我得到邵康节先生《皇极经世书》之正传，命中注定应该传授给你。"</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="paragraph-pair border-b border-dashed border-gray-200 pb-6 mb-6">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>余引之归，告母。母曰："善待之。"试其数，纤悉皆验。余遂启读书之念，谋之表兄沈称。言："郁海谷先生在沈友夫家开馆，我送汝寄学，甚便。"余遂礼郁为师。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>于是我就礼请孔老先生回到家中暂住，并将这些情形禀告母亲。母亲说："你要好好地招待他老人家。"请他为我推算命数，结果不论多么微细之事，竟然都非常地灵验。因此，我就萌生了读书的念头，并且与表兄沈称商量此事。表兄说："郁海谷先生在沈友夫的家里开班教学，我送你依附在他家里读书，非常方便。"于是我就拜郁先生为老师。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="paragraph-pair">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>孔为余起数：县考童生，当十四名；府考七十一名；提学考第九名。明年赴考，三处名数皆合。复为卜终身休咎，言某年考第几名，某年当补廪，某年当贡。贡后某年，当选四川一大尹。在任三年半，即宜告归。五十三岁八月十四日丑时，当终于正寝，惜无子。余备录而谨记之。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>孔老先生为我推算命运数理说："做童生时参加县考，应当会考取第十四名；府考得到第七十一名；提学考试得到第九名。"到了第二年赴考，三种考试真的都考取了，而且录取的名次也都符合。他又替我占卜一生的吉凶祸福，说："某年会考上第几名，某年能补上廪生缺，某年当上贡生。出贡后某年，当选为四川省的一个知县。在任三年半，就应该要离职还乡。在五十三岁那年的八月十四日丑时，应该会寿终正寝，可惜并没有子嗣。"孔老先生的这些预言，我都完全地记录下来，并且谨记在心。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 原文与译文对照 - 第二部分 -->
+                        <div id="section1-2" class="mb-8">
+                            <h3 class="text-xl font-bold text-primary-800 mb-4 pb-2 border-b border-primary-200">遇见云谷禅师</h3>
+                            
+                            <div class="paragraph-pair border-b border-dashed border-gray-200 pb-6 mb-6">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>自此以后，凡遇考校，其名数先后，皆不出孔公所悬定者。独算余食廪米九十一石五斗当出贡，及食米七十一石，屠宗师即批准补贡。余窃疑之。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>从此以后，凡是碰到了考试，所得到的名次先后，都不出孔老先生所预测的。惟独算我必须领用九十一石五斗的廪生米，才会补上贡生，但是当我领到七十一石的时候，屠宗师就批准我补上贡生位。因此，我对于孔老先生的预言，心中开始产生怀疑。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="paragraph-pair border-b border-dashed border-gray-200 pb-6 mb-6">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>后果为署印杨公所驳。直至丁卯年，殷秋溟宗师见余场中备卷，叹曰："五策，即五篇奏议也，岂可使博洽淹贯之儒，老于窗下乎？"遂依县申文准贡。连前食米计之，实九十一石五斗也。余因此益信，"进退有命，迟速有时"，澹然无求矣。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>后来屠宗师要批准我补贡的呈文，果然被代理提学职务的杨公驳回。一直到了丁卯年，殷秋溟宗师看到我考场上的备选试卷，不禁感叹地说："这五篇文章，就像是呈给皇上的五篇论政奏折，难道要让这种学识渊博又能融会贯通的读书人，老死窗下而不能出人头地吗？"于是就按照县里的呈文，准许补升为贡生。连同以往所领的七十一石米加起来，确实是九十一石五斗。经过了这一番波折，我因此更加相信，一个人的功名浮沉，都是命中所注定的，而运气来得快或慢，也都有既定的时间，所以对于世上的一切，就看得非常地平淡，再也不想汲汲营求了。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="paragraph-pair border-b border-dashed border-gray-200 pb-6 mb-6">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>贡入燕都，留京一年，终日静坐，不阅文字。己巳归，游南雍，未入监，先访云谷，会禅师于栖霞山中，对坐一室，凡三昼夜不瞑目。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>在我当上贡生以后，就依照国家的规定，到北京国子监读书，因此在京城住了一年。这段期间一有空闲，便整天静坐，不阅读任何书籍。到了己巳年，回到南京的国子监读书。在还没有入学之前，就先去栖霞山拜访云谷法会禅师，两人在禅房中对坐了三天三夜，未曾闭上眼睛。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="paragraph-pair">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>云谷问曰："凡人所以不得作圣者，只为妄念相缠耳！汝坐三日，不见起一妄念，何也？"余曰："吾为孔先生算定，荣辱生死，皆有定数，即要妄想，亦无可妄想。"</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>云谷禅师问我说："凡是一个人之所以无法成为圣人，只是因为被虚妄不实的心念所缠缚罢了！你已经静坐了三天，却不见起一个妄念，不会胡思乱想，到底是什么原因呢？"我回答说："我的命运已经被孔老先生算定了，一切得失，乃至于生死大事，都是既定之事，就算是要妄想，也已经没什么好想的了！"</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 原文与译文对照 - 第三部分 -->
+                        <div id="section1-3" class="mb-8">
+                            <h3 class="text-xl font-bold text-primary-800 mb-4 pb-2 border-b border-primary-200">命由我作，福自己求</h3>
+                            
+                            <div class="paragraph-pair border-b border-dashed border-gray-200 pb-6 mb-6">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>云谷笑曰："我待汝是豪杰，原来只是凡夫。"问其故，曰："人未能无心，终为阴阳所缚，安得无数？但惟凡人有数。极善之人，数固拘他不定；极恶之人，数亦拘他不定。汝二十年来被他算定，不曾转动一毫，岂非是凡夫？"</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>云谷禅师笑着说："我原先以为你是一个才智出众的豪杰，原来只是个平庸的凡夫罢了。"我听了禅师所说的话，不明白话中之意，于是请问其中的原因。禅师回答说："一个人若是不能去除妄想心，终究会受到宇宙间阴阳两种对立面所限制，怎么会没有定数呢？但是，只有凡夫才会受制于定数。极为善良的人，时时存善念、常常做好事，所以能够远离祸患而得到福报，气数固然约束不了他的命运；极为恶毒的人，时时存恶念、常常做坏事，使得福报损耗而招致祸害，这样气数也会发生变化，无法局限得了他的命运。你二十年来被孔先生算定，却丝毫都不曾转动过，难道不是平庸的凡夫吗？"</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="paragraph-pair border-b border-dashed border-gray-200 pb-6 mb-6">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>余问曰："然则数可逃乎？"曰："命由我作，福自己求。诗书所称，的为明训。我教典中说：'求富贵得富贵，求男女得男女，求长寿得长寿。'夫妄语乃释迦大戒，诸佛菩萨岂诳语欺人？"</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>我进一步请问说："然而这种定数是否可以逃避得了呢？"云谷禅师说："命是由自己造作的，福也是由自己求得的。这种道理在古代的诗书中都已经讲过了，实在是很明确的金玉良言。我们佛教经典里就说过：'想要求取富贵，就一定可以得到富贵；想要求生男生女，也会获得如愿；若要祈求长寿，便能达到长寿的需求。'妄语是释迦牟尼佛制定的根本大戒，诸佛菩萨难道会乱讲话骗人吗？"</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="paragraph-pair">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>余进曰："孟子言：'求则得之，是求在我者也。'道德仁义，可以力求；功名富贵，如何求得？"云谷曰："孟子之言不错，汝自错解了！汝不见六祖说：'一切福田，不离方寸；从心而觅，感无不通。'求在我，不独得道德仁义，亦得功名富贵；内外双得，是'求有益于得'也。若不反躬内省，而徒向外驰求，则'求之有道，而得之有命'矣！内外双失，故无益。"</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>我听了禅师所说的话以后，心里还是存着疑问，无法理解，于是进一步请问："孟子曾说：'凡是能够求得到的，必定是自己可以做得到的事情。'道德仁义是自性本具的，靠自己努力修养是可以得到的；但功名富贵却是外在的，谁都无法掌握得了，必须要依靠他人的赏识、提拔，怎么能够求得到呢？"云谷禅师回答说："孟子所说的话并没有错，是你自己未能深入体会而错解了意思。你没有看过六祖惠能禅师说：'一切的福田，都离不开我们的心地，只要从心地上下功夫去寻求，绝对不会得不到感应的。'若能从自己内心去寻求的话，不仅可以成就道德仁义，就连身外的功名富贵也一样可以获得。内在的修养与外在的福禄双双皆能得到，这种求法才是有益于获得，才能称得上是圆满的。如果不知道要回转过来，向自己内心深处去省察，只是一味地盲目向外追求名利，那么就算是有好的方法或门路让你去追求，也得看你是否有得到的命。这种求法既无助于内在的修养，也不能够获得外在的利益；内外既然都会失去，所以是毫无益处的。"</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 flex justify-between">
+                            <a href="#introduction" class="text-primary-700 hover:text-primary-800">&larr; 返回简介</a>
+                            <a href="#section2" class="text-primary-700 hover:text-primary-800">下一章：改过之法 &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 第二章：改过之法 -->
+            <section id="section2" class="mb-12">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-primary-700 text-white py-4 px-6">
+                        <h2 class="text-2xl font-bold">第二章：改过之法</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-lg font-medium text-primary-800 mb-6">
+                            <p>改过之法，阐述了改正错误的必要性和方法。袁了凡认为，要想改变命运，首先要改正自己的过错，从内心深处改变，而不只是表面的修修补补。</p>
+                        </div>
+                        
+                        <!-- 原文与译文对照 - 第一部分 -->
+                        <div id="section2-1" class="mb-8">
+                            <h3 class="text-xl font-bold text-primary-800 mb-4 pb-2 border-b border-primary-200">为何要改过</h3>
+                            
+                            <div class="paragraph-pair border-b border-dashed border-gray-200 pb-6 mb-6">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>夫学问之道，贵于改过。改过之法，贵于真切。</p>
+                                        <p>世人病在好善易而改过难，甚于作善难而去恶易，故须earnest用功。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>学问的道理，重要的在于改正过失。改正过失的方法，最重要的是要真诚恳切。</p>
+                                        <p>世人的毛病在于爱好善事容易，而改正过失却很困难，甚至比行善难而去恶易还要难。所以必须要真心诚意地下功夫。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="paragraph-pair">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>改过之法有三：一曰发耻心；二曰发畏心；三曰发勇心。</p>
+                                        <p>耻心者：思古之圣贤，与我同为丈夫，彼何以百世可师，我何以一身瓦裂？耻不若贤，而思齐之，则见贤思齐之心油然而生矣。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>改正过失的方法有三种：第一种是发起羞耻心；第二种是发起畏惧心；第三种是发起勇猛心。</p>
+                                        <p>所谓羞耻心，就是想到古代的圣贤，他们与我一样都是男子汉，为什么他们能够成为后代学习的榜样，而我却一事无成？因为感到自己不如贤人而有所羞耻，进而想要向他们看齐，那么见贤思齐的心就会油然而生。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 原文与译文对照 - 第二部分 -->
+                        <div id="section2-2" class="mb-8">
+                            <h3 class="text-xl font-bold text-primary-800 mb-4 pb-2 border-b border-primary-200">如何改过</h3>
+                            
+                            <div class="paragraph-pair border-b border-dashed border-gray-200 pb-6 mb-6">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>夫过有千端，惟心所造，吾心不动，过安从生？学者于好色、好名、好货、好怒种种诸过，不必逐类寻求。但当一心为善，正念现前，邪念自然污染不上。如太阳当空，魍魉潜消；一室之内，不居两主。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>所有的过错虽然有千万种，但都是由心所造作的。如果我的心不生妄动，过错从何而生呢？修行的人对于贪爱美色、贪求名誉、贪图财物、容易发怒等种种过失，不必一一去找寻。只要一心行善，正念现前，邪念自然就无法染污。就好像太阳升到空中时，鬼怪自然消失；一个房间里，不能同时有两个主人一样。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="paragraph-pair">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>然过有显有隐，有大有小：[...]若侵公肥己，奸淫妄语，刻薄希图，种种败行，世皆知之，则为显过；若心虽外好，而中实不然，则为隐过。</p>
+                                        <p>佛经说，一念瞋心起，八万障门开，一念贪心起，烦恼犹如缚。此为大过。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>不过，过错有明显的，也有隐藏的；有大的，也有小的：[...] 如果侵占公物来肥己，淫乱、说谎，刻薄待人、暗中谋划，种种败德的行为，大家都知道，这就是明显的过错；如果心里虽然表面上看来很好，但内心实际上并非如此，这就是隐藏的过错。</p>
+                                        <p>佛经说：一念瞋恨心升起，等于打开了八万个障碍之门；一念贪心生起，烦恼就像被绳索束缚一样。这些都是大过错。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 原文与译文对照 - 第三部分 -->
+                        <div id="section2-3" class="mb-8">
+                            <h3 class="text-xl font-bold text-primary-800 mb-4 pb-2 border-b border-primary-200">改过的效验</h3>
+                            
+                            <div class="paragraph-pair border-b border-dashed border-gray-200 pb-6 mb-6">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>悟心体者，无丝毫过可改，专去习气；其次深察心源，常觉妄念为过；又其次，细察事为，所行有亏阙处，即改之；又其次，自察躬行，有误即改；又其次，闻过怒，闻誉乐，从谏则明，愈后则暗；又其次，见人指我之过，不恃己长，反谋其善；又其次，闻善则迁，见贤则思齐。茍日不知非，岁不长进，则虽寸善不伸，寸过不改，德终不成，业终不立矣。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>悟到心体的人，已经没有丝毫的过错可改了，只是专门去除习气；其次是深入察觉心的源头，常常觉察妄念为过；再其次，仔细检查自己的言行，所做的事情有欠缺的地方，立即改正；更次一等的，是自我检查身体力行，有错误立刻改正；更次一等的，是听人指出自己的过错就生气，听人称赞就高兴，接受劝谏可以明白自己的过错，却在此后又变得昏暗；最下等的，是看到别人指出自己的错误，不仗恃自己的长处，反为他人计划一些好事；以及听到善事就想要接近，见到贤人就想要效仿。如果一天都不知道自己有什么不对的地方，一年都不长进，那么即使一点点的善事也不能伸展，一点点的过错也不能改正，道德最终不会成就，事业也不会建立。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="paragraph-pair">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>改过法门，我于此不能殚述，要以"诚敬谨慎"为主。何以言之？一切过恶，皆是私心起念，故须诚心正念；一切过恶，皆是慢心不敬，故须敬畏惧闲；一切过恶，皆是放逸粗心，故须谨慎小心。</p>
+                                        <p>一个"诚"字、一个"敬"字、谨慎二字，递相为用，习与性成，自然过少而福多矣。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>改过的方法，我在这里不能详尽描述，要以"诚心、恭敬、谨慎"为主。为什么这么说呢？一切过错和恶行，都是因为私心起了念头，所以需要真诚的心和正确的念头；一切过错和恶行，都是因为傲慢心不恭敬，所以需要恭敬和敬畏；一切过错和恶行，都是因为放纵和粗心，所以需要谨慎小心。</p>
+                                        <p>一个"诚"字、一个"敬"字、"谨慎"二字，互相作用，习惯成为本性，自然过错就会减少，而福报就会增多了。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 flex justify-between">
+                            <a href="#section1" class="text-primary-700 hover:text-primary-800">&larr; 上一章：立命之学</a>
+                            <a href="#section3" class="text-primary-700 hover:text-primary-800">下一章：积善之方 &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 第三章：积善之方 -->
+            <section id="section3" class="mb-12">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-primary-700 text-white py-4 px-6">
+                        <h2 class="text-2xl font-bold">第三章：积善之方</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-lg font-medium text-primary-800 mb-6">
+                            <p>积善之方，讲述了如何积累善行，改变命运。袁了凡认为，善有真假，要分辨清楚，从内心真诚地行善，才能改变命运。</p>
+                        </div>
+                        
+                        <!-- 原文与译文对照 - 第一部分 -->
+                        <div id="section3-1" class="mb-8">
+                            <h3 class="text-xl font-bold text-primary-800 mb-4 pb-2 border-b border-primary-200">善有真假</h3>
+                            
+                            <div class="paragraph-pair border-b border-dashed border-gray-200 pb-6 mb-6">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>夫积善之方，我知其大略：一曰真实不虚，方有实果；二曰清纯无染，不欲人知；三曰久而不替，不自作辍。</p>
+                                        <p>盖有善而不穷其理，则身无定向；无实行为根，则飘游于虚。故必先明乎善之理，次致其力，而后可积善尔。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>积累善行的方法，我知道其大概：第一是真实不虚假，才会有实在的果报；第二是清净纯粹没有染污，不希望别人知道；第三是长久而不改变，不自己中断。</p>
+                                        <p>若是有行善的念头却不穷究其中的道理，那么自己就没有明确的方向；没有实际行动作为根本，就像飘浮在虚空中一样。所以必须先明白行善的道理，其次才付出努力，然后才能积累善行。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="paragraph-pair">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>善之性体，皆是天理；善之事迹，皆是人欲。诸恶固是人欲，善而有人欲焉，亦恶也，故不断绝人欲，不成天理。</p>
+                                        <p>自姚文正公以《周子通书》训儿，其善利人无所不用其至，而训以无欲，皆此意也。</p>
+                                        <p>夫善有真有假，真善则气从天降，心平气和；假善则情出力胜，务求矜夸。善有阴有阳，阳善者色施；阴善者内用。善有端有曲，端则一心为善；曲则多机取福。善有半有满，小善不能掩大恶，则为半善；善人大过不显其小善，乃全善也。善有真有假，真则人不知而己愈安；假则己不安而人愈知。善有正有邪，正则正其所当为；邪则向外驰求。善有公有私，公则万物一体；私则利己妨人，为近名之善人，皆此也。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>善的本性实体，都是天理；善的事迹表现，都是人欲。所有的恶当然是人欲，善中若有人欲存在，也是恶。所以不能断绝人欲，就不能成就天理。</p>
+                                        <p>从前姚文正公以《周子通书》来训导子弟，他善于利人的方法无不达到极致，而训导他们无欲，就是这个意思。</p>
+                                        <p>善有真的也有假的，真善则是气从天上降下来，心平气和；假善则是情感用力过猛，急于求取炫耀。善有阴也有阳，阳善是显露于外的；阴善是内在的运用。善有端正的也有弯曲的，端正就是一心为善；弯曲则是多方计谋取福。善有一半也有圆满，小善不能掩盖大恶，就是半善；善人的大过失不会掩盖他的小善，这才是全善。善有真也有假，真的则别人不知道而自己更加安心；假的则自己不安心而让别人知道。善有正也有邪，正则是正确地做应当做的事；邪则是向外追求。善有公也有私，公则认为万物是一体的；私则是利己妨人，为了博取名声而行善的人，都是这样。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 原文与译文对照 - 第二部分 -->
+                        <div id="section3-2" class="mb-8">
+                            <h3 class="text-xl font-bold text-primary-800 mb-4 pb-2 border-b border-primary-200">十种行善方法</h3>
+                            
+                            <div class="paragraph-pair border-b border-dashed border-gray-200 pb-6 mb-6">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>《易经》上说，积善之家，必有余庆。虽善行无穷，不能尽述，今举大概言之：</p>
+                                        <p>一曰与人为善。我能够影响别人的善事，是我的福报；如果是别人行善，我并未带动他，不能算是我的德行。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>《易经》上说，积善之家，必有余庆。虽然善行无穷无尽，不能全部说明，现在举出大概来说：</p>
+                                        <p>第一是与人为善。我能够影响别人的善事，是我的福报；如果是别人行善，我并未带动他，不能算是我的德行。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="paragraph-pair">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>二曰爱敬存心。对一切人，一切物，都存有一种爱敬之心。</p>
+                                        <p>三曰成人之美。别人所做的善事，我能帮助他成功。</p>
+                                        <p>四曰劝人为善。以好言相劝，使人改恶向善。</p>
+                                        <p>五曰救人危急。见人遭遇危难，当全力营救。</p>
+                                        <p>六曰兴建大利。兴建有利众生的事业。</p>
+                                        <p>七曰舍财作福。布施财物，利益贫苦众生。</p>
+                                        <p>八曰护持正法。护持佛法，使众生得益。</p>
+                                        <p>九曰敬重尊长。对父母、师长、有德者，恭敬尊重。</p>
+                                        <p>十曰爱惜物命。怜惜一切众生，不杀生。</p>
+                                        <p>善事虽多，大约不出这十条。若能推而广之，则万德皆备矣。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>第二是爱敬存心。对一切人，一切物，都存有一种爱敬之心。</p>
+                                        <p>第三是成人之美。别人所做的善事，我能帮助他成功。</p>
+                                        <p>第四是劝人为善。以好言相劝，使人改恶向善。</p>
+                                        <p>第五是救人危急。见人遭遇危难，当全力营救。</p>
+                                        <p>第六是兴建大利。兴建有利众生的事业。</p>
+                                        <p>第七是舍财作福。布施财物，利益贫苦众生。</p>
+                                        <p>第八是护持正法。护持佛法，使众生得益。</p>
+                                        <p>第九是敬重尊长。对父母、师长、有德者，恭敬尊重。</p>
+                                        <p>第十是爱惜物命。怜惜一切众生，不杀生。</p>
+                                        <p>善事虽多，大约不出这十条。若能推而广之，则万德皆备矣。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 flex justify-between">
+                            <a href="#section2" class="text-primary-700 hover:text-primary-800">&larr; 上一章：改过之法</a>
+                            <a href="#section4" class="text-primary-700 hover:text-primary-800">下一章：谦德之效 &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 第四章：谦德之效 -->
+            <section id="section4" class="mb-12">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-primary-700 text-white py-4 px-6">
+                        <h2 class="text-2xl font-bold">第四章：谦德之效</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-lg font-medium text-primary-800 mb-6">
+                            <p>谦德之效，论述了谦虚品德的重要性和功效。袁了凡认为，谦虚可以使人保持善果，而骄傲则会使人失去福报。</p>
+                        </div>
+                        
+                        <!-- 原文与译文对照 - 第一部分 -->
+                        <div id="section4-1" class="mb-8">
+                            <h3 class="text-xl font-bold text-primary-800 mb-4 pb-2 border-b border-primary-200">天道与谦德</h3>
+                            
+                            <div class="paragraph-pair border-b border-dashed border-gray-200 pb-6 mb-6">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>《易》曰："天道亏盈而益谦，地道变盈而流谦，鬼神害盈而福谦，人道恶盈而好谦。"</p>
+                                        <p>盖谦受益，满招损，自然之理也。观化导之庸言，谦尊而光，满招损，谦受益，盈虚之理，不可不勉。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>《易经》上说："天道减损盈满而增益谦虚，地道改变盈满而流向谦虚，鬼神伤害盈满而福佑谦虚，人道厌恶盈满而喜爱谦虚。"</p>
+                                        <p>谦虚能够得到益处，自满则会招致损害，这是自然的道理。观察教化引导的平常话语，谦虚能够获得尊重和光荣，盈满招致损害，谦虚得到益处，盈虚的道理，不可不勉力去做。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="paragraph-pair">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>是故谦之一卦，六爻皆吉。《象》曰："地中有山，谦。君子以裒多益寡，称物平施。"盖亏盈而益谦，莫盛于此。若夫自惭而不矜，完礼而不争，见德于人，见过于己，善道人之善，而非訾人之恶，此皆谦德之迹也。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>因此《易经》中谦这一卦，六爻都是吉祥的。《象传》说："地中有山，为谦卦。君子因此减少多余的，增益不足的，称量事物平等施予。"减损盈满而增益谦虚，没有比这个更为盛大的了。若是自己感到惭愧而不自夸，完成礼节而不争强，看到别人的德行，看到自己的过错，善于宣扬别人的善行，而不苛责别人的恶行，这些都是谦德的表现。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 原文与译文对照 - 第二部分 -->
+                        <div id="section4-2" class="mb-8">
+                            <h3 class="text-xl font-bold text-primary-800 mb-4 pb-2 border-b border-primary-200">谦德的表现</h3>
+                            
+                            <div class="paragraph-pair border-b border-dashed border-gray-200 pb-6 mb-6">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>谦则受教有地，而取善无穷；满则不受教，而取善有尽。谦则受责无怨，而悔过有自新之路；满则拒谏饰非，而贰过无自改之路。谦则进取于贤良，满则退托于愚鄙矣。</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>谦虚则接受教导有余地，而获取善行无穷尽；自满则不接受教导，而获取善行有穷尽。谦虚则接受责备没有怨言，而悔改过失有自我更新的途径；自满则拒绝劝谏，掩饰过错，而再度犯错没有自我改正的途径。谦虚则进取于贤良之道，自满则退缩托付于愚昧鄙陋之中了。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="paragraph-pair">
+                                <div class="flex flex-col lg:flex-row">
+                                    <div class="original-text lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
+                                        <h4 class="text-primary-700 font-bold mb-2">原文：</h4>
+                                        <p>夫谦之为德，可以克己而省身，可以接下而固本，可以成人之美，可以避人之怨，可以受人之教，可以受益无穷。古之圣贤，何德之无，而惟以谦退为称！其可学也亦明矣。</p>
+                                        <p>谦如此，则自然感动天地，而和悦鬼神。人皆爱之，力皆助之，斯有不兴者乎？</p>
+                                    </div>
+                                    <div class="translation-text lg:w-1/2 lg:pl-6 border-l-0 lg:border-l border-gray-200">
+                                        <h4 class="text-primary-600 font-bold mb-2">译文：</h4>
+                                        <p>谦虚作为一种德行，可以克服自己而检点自身，可以接纳下位而稳固根本，可以成就别人的美德，可以避免别人的怨恨，可以接受别人的教导，可以获得无穷的益处。古代的圣贤，什么德行没有呢，而只是以谦逊退让为称赞！其可以学习的道理也很明显了。</p>
+                                        <p>谦虚如此，则自然感动天地，而和谐愉悦鬼神。人人都爱戴他，人人都帮助他，这样有什么事情不能兴盛的呢？</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 flex justify-between">
+                            <a href="#section3" class="text-primary-700 hover:text-primary-800">&larr; 上一章：积善之方</a>
+                            <a href="#" class="text-primary-700 hover:text-primary-800">返回顶部 &uarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- 移动版目录按钮 -->
+        <div class="md:hidden fixed bottom-6 right-6">
+            <button id="mobile-toc-toggle" class="bg-primary-700 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+                </svg>
+            </button>
+        </div>
+        
+        <!-- 移动版侧边栏目录 -->
+        <div id="mobile-toc" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+            <div class="absolute right-0 top-0 bottom-0 w-80 bg-white overflow-y-auto p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-lg font-bold text-primary-800">目录</h2>
+                    <button id="mobile-toc-close" class="text-gray-500 hover:text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                
+                <ul class="space-y-1">
+                    <li><a href="#introduction" class="mobile-toc-item block px-3 py-2 hover:bg-primary-50 transition">前言与简介</a></li>
+                    <li>
+                        <a href="#section1" class="mobile-toc-item block px-3 py-2 hover:bg-primary-50 transition">第一章：立命之学</a>
+                        <ul class="ml-4 mt-1 space-y-1 text-sm">
+                            <li><a href="#section1-1" class="mobile-toc-item block px-3 py-1 hover:bg-primary-50 transition">袁了凡的命运预测</a></li>
+                            <li><a href="#section1-2" class="mobile-toc-item block px-3 py-1 hover:bg-primary-50 transition">遇见云谷禅师</a></li>
+                            <li><a href="#section1-3" class="mobile-toc-item block px-3 py-1 hover:bg-primary-50 transition">命由我作，福自己求</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#section2" class="mobile-toc-item block px-3 py-2 hover:bg-primary-50 transition">第二章：改过之法</a>
+                        <ul class="ml-4 mt-1 space-y-1 text-sm">
+                            <li><a href="#section2-1" class="mobile-toc-item block px-3 py-1 hover:bg-primary-50 transition">为何要改过</a></li>
+                            <li><a href="#section2-2" class="mobile-toc-item block px-3 py-1 hover:bg-primary-50 transition">如何改过</a></li>
+                            <li><a href="#section2-3" class="mobile-toc-item block px-3 py-1 hover:bg-primary-50 transition">改过的效验</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#section3" class="mobile-toc-item block px-3 py-2 hover:bg-primary-50 transition">第三章：积善之方</a>
+                        <ul class="ml-4 mt-1 space-y-1 text-sm">
+                            <li><a href="#section3-1" class="mobile-toc-item block px-3 py-1 hover:bg-primary-50 transition">善有真假</a></li>
+                            <li><a href="#section3-2" class="mobile-toc-item block px-3 py-1 hover:bg-primary-50 transition">十种行善方法</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#section4" class="mobile-toc-item block px-3 py-2 hover:bg-primary-50 transition">第四章：谦德之效</a>
+                        <ul class="ml-4 mt-1 space-y-1 text-sm">
+                            <li><a href="#section4-1" class="mobile-toc-item block px-3 py-1 hover:bg-primary-50 transition">天道与谦德</a></li>
+                            <li><a href="#section4-2" class="mobile-toc-item block px-3 py-1 hover:bg-primary-50 transition">谦德的表现</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <!-- 阅读设置 -->
+                <div class="mt-8 pt-4 border-t border-primary-200">
+                    <h3 class="text-md font-bold text-primary-800 mb-3">阅读设置</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="text-sm text-gray-700 block mb-1">字体大小</label>
+                            <div class="flex items-center">
+                                <button id="mobile-font-smaller" class="bg-primary-100 hover:bg-primary-200 px-3 py-1 rounded-l text-primary-800">A-</button>
+                                <button id="mobile-font-reset" class="bg-primary-100 hover:bg-primary-200 px-3 py-1 text-primary-800">重置</button>
+                                <button id="mobile-font-larger" class="bg-primary-100 hover:bg-primary-200 px-3 py-1 rounded-r text-primary-800">A+</button>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-sm text-gray-700 block mb-1">显示模式</label>
+                            <select id="mobile-display-mode" class="w-full bg-primary-50 border border-primary-200 rounded px-3 py-1 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                <option value="side-by-side">原文译文并排</option>
+                                <option value="original-first">原文在前</option>
+                                <option value="translation-first">译文在前</option>
+                                <option value="original-only">仅显示原文</option>
+                                <option value="translation-only">仅显示译文</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="bg-primary-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h4 class="text-lg font-bold mb-2">了凡四训学习网</h4>
+                    <p class="text-primary-200 text-sm">传承国学智慧，启迪现代生活</p>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-primary-200 text-sm">&copy; 2025 了凡四训学习网 版权所有</p>
+                    <p class="text-primary-200 text-sm mt-1">本站内容仅供学习参考，请勿用于商业用途</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 移动版目录切换
+        document.getElementById('mobile-toc-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-toc').classList.remove('hidden');
+        });
+        
+        document.getElementById('mobile-toc-close').addEventListener('click', function() {
+            document.getElementById('mobile-toc').classList.add('hidden');
+        });
+        
+        document.getElementById('mobile-toc').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
+        
+        // 目录项点击关闭移动版目录
+        const mobileTocItems = document.querySelectorAll('.mobile-toc-item');
+        mobileTocItems.forEach(item => {
+            item.addEventListener('click', function() {
+                document.getElementById('mobile-toc').classList.add('hidden');
+            });
+        });
+        
+        // 字体大小调整
+        const originalTextElements = document.querySelectorAll('.original-text p');
+        const translationTextElements = document.querySelectorAll('.translation-text p');
+        let fontSize = 1; // 默认大小比例
+        
+        function updateFontSize() {
+            originalTextElements.forEach(el => {
+                el.style.fontSize = `${1.1 * fontSize}rem`;
+            });
+            translationTextElements.forEach(el => {
+                el.style.fontSize = `${1 * fontSize}rem`;
+            });
+        }
+        
+        // 桌面版字体大小调整
+        document.getElementById('font-smaller').addEventListener('click', function() {
+            if (fontSize > 0.8) {
+                fontSize -= 0.1;
+                updateFontSize();
+            }
+        });
+        
+        document.getElementById('font-larger').addEventListener('click', function() {
+            if (fontSize < 1.5) {
+                fontSize += 0.1;
+                updateFontSize();
+            }
+        });
+        
+        document.getElementById('font-reset').addEventListener('click', function() {
+            fontSize = 1;
+            updateFontSize();
+        });
+        
+        // 移动版字体大小调整
+        document.getElementById('mobile-font-smaller').addEventListener('click', function() {
+            if (fontSize > 0.8) {
+                fontSize -= 0.1;
+                updateFontSize();
+            }
+        });
+        
+        document.getElementById('mobile-font-larger').addEventListener('click', function() {
+            if (fontSize < 1.5) {
+                fontSize += 0.1;
+                updateFontSize();
+            }
+        });
+        
+        document.getElementById('mobile-font-reset').addEventListener('click', function() {
+            fontSize = 1;
+            updateFontSize();
+        });
+        
+        // 显示模式调整
+        function updateDisplayMode(mode) {
+            const paragraphPairs = document.querySelectorAll('.paragraph-pair');
+            
+            paragraphPairs.forEach(pair => {
+                const originalText = pair.querySelector('.original-text');
+                const translationText = pair.querySelector('.translation-text');
+                
+                // 重置样式
+                originalText.classList.remove('lg:w-1/2', 'w-full', 'hidden');
+                translationText.classList.remove('lg:w-1/2', 'w-full', 'lg:pl-6', 'border-l-0', 'lg:border-l', 'hidden', 'mt-6');
+                
+                // 根据模式设置样式
+                switch(mode) {
+                    case 'side-by-side':
+                        originalText.classList.add('lg:w-1/2', 'mb-4', 'lg:mb-0', 'lg:pr-6');
+                        translationText.classList.add('lg:w-1/2', 'lg:pl-6', 'border-l-0', 'lg:border-l');
+                        pair.classList.add('flex', 'flex-col', 'lg:flex-row');
+                        break;
+                    case 'original-first':
+                        originalText.classList.add('w-full');
+                        translationText.classList.add('w-full', 'mt-6');
+                        pair.classList.remove('flex', 'flex-col', 'lg:flex-row');
+                        break;
+                    case 'translation-first':
+                        originalText.classList.add('w-full', 'mt-6');
+                        translationText.classList.add('w-full');
+                        translationText.parentNode.insertBefore(translationText, originalText);
+                        pair.classList.remove('flex', 'flex-col', 'lg:flex-row');
+                        break;
+                    case 'original-only':
+                        originalText.classList.add('w-full');
+                        translationText.classList.add('hidden');
+                        pair.classList.remove('flex', 'flex-col', 'lg:flex-row');
+                        break;
+                    case 'translation-only':
+                        originalText.classList.add('hidden');
+                        translationText.classList.add('w-full');
+                        pair.classList.remove('flex', 'flex-col', 'lg:flex-row');
+                        break;
+                }
+            });
+        }
+        
+        // 桌面版显示模式选择
+        document.getElementById('display-mode').addEventListener('change', function() {
+            updateDisplayMode(this.value);
+            document.getElementById('mobile-display-mode').value = this.value;
+        });
+        
+        // 移动版显示模式选择
+        document.getElementById('mobile-display-mode').addEventListener('change', function() {
+            updateDisplayMode(this.value);
+            document.getElementById('display-mode').value = this.value;
+        });
+        
+        // 高亮当前阅读的章节
+        function highlightCurrentSection() {
+            const sections = document.querySelectorAll('section');
+            const tocItems = document.querySelectorAll('.toc-item');
+            
+            let currentSectionId = '';
+            
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom > 100) {
+                    currentSectionId = section.id;
+                }
+            });
+            
+            tocItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${currentSectionId}`) {
+                    item.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', highlightCurrentSection);
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            highlightCurrentSection();
+        });
+    </script>
+</body>
+</html>
